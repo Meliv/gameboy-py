@@ -16,7 +16,7 @@ def XOR_A(cpu): # 0xaf XOR A
 op_codes = {
     0x00: lambda _: nop(),
     
-    0x31: lambda cpu,mem: ld_sp_d16(cpu,mem),
+    0x31: lambda cpu: ld_sp_d16(cpu,cpu.M),
 
     0xaf: lambda cpu,_: XOR_A(cpu),
 }

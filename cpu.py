@@ -19,7 +19,8 @@ class CPU:
         self.PC = 0x0           # Program Counter
 
     def execute_next_instruction(self):
-        cycles = op_codes[self.M[self.PC]](self,self.M)
+        o = self.M[self.PC]
+        cycles = op_codes[o](self)
         return cycles
     
     def start(self):
