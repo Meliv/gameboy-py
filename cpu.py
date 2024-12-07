@@ -1,46 +1,28 @@
 from operations import op_codes
 
-class CPU():
+class CPU:
+    def __init__(self):
+        self.M = [0x0] * 0xffff # Memory
         
-    # Registers
+        self.A = 0x0            # Accumulator
+        self.F = 0x0            # Flags
 
-    # 8-bit
+        self.B = 0x0            # 8-bit registers
+        self.C = 0x0
+        self.D = 0x0
+        self.E = 0x0
+        self.H = 0x0
+        self.L = 0x0
+        
+                                # 16-bit registers
+        self.SP = 0x0           # Stack Pointer
+        self.PC = 0x0           # Program Counter
 
-    # Accumulator
-    A: int = 0x0
-
-    # Flags
-    F: int = 0x0
-
-    B: int = 0x0
-    C: int = 0x0
-    D: int = 0x0
-    E: int = 0x0
-    H: int = 0x0
-    L: int = 0x0
-
-
-    # 16-bit
-
-    # Stack Pointer
-    SP: int = 0x0
-
-    # Program Counter
-    PC: int = 0x0
-    
-    
-    # Memory
-    
-    M: list[int] = []
-
-    # Operations
-
-    def __ExecuteNextInstruction__(self):
-        cycles = op_codes[self.M[self.PC]](self)
-        self.PC += 1
+    def execute_next_instruction(self):
+        cycles = op_codes[self.M[self.PC]](self,self.M)
         return cycles
     
-    def Run(self):
+    def start(self):
         
         # 4194304 cycles per second (4.194304 MHz)
         # 60 fps = 4194304/60 = 69905 (0.069905MHz)
@@ -49,7 +31,7 @@ class CPU():
         MAX_CYCLES, cycles = 69905, 0
     
         while cycles < MAX_CYCLES:
-            c = self.__ExecuteNextInstruction__()
+            c = self.execute_next_instruction()
             cycles += c
 
 

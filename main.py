@@ -1,18 +1,14 @@
 from cpu import CPU
 
-program = [
-    0x40,
-    0x41,
-]
 
  # Debug. Fill up memory with NOP instructions
-for i in range(69905):
-    program.append(0x00)
-
 cpu = CPU()
 
-cpu.M = program
+with open(f"bootrom.bin", "rb") as f:
+        for i,b in enumerate(f.read()):
+            cpu.M[i] = b
+            print(f'b = {b:08b} {hex(b)}')  
 
-cpu.Run()
+cpu.start()
 
 print(cpu.B)
