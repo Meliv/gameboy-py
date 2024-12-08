@@ -28,5 +28,5 @@ class NOP_Test(unittest.TestCase):
         self.assertEqual(cpu.PC, 1)
         self.assertEqual(cpu.SP, 0)
         
-        self.assertTrue(all(i == 0x00 for i in cpu.M))
+        self.assertEqual(cpu.M, [])
         
