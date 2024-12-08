@@ -1,8 +1,10 @@
 import operations
 
 class CPU:
-    def __init__(self):
-        self.M = [0x0] * 0xffff # Memory
+    def __init__(self, memory=None):
+        
+                                # Memory
+        self.M = memory if memory is not None else [0x0] * 0xffff 
         
         self.A = 0x0            # Accumulator
         self.F = 0x0            # Flags

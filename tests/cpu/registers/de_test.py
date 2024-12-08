@@ -7,7 +7,7 @@ import unittest
 class DE_Test(unittest.TestCase):
     @given(integers(min_value=256, max_value=65535))
     def test_setter(self, de):
-        cpu = CPU()
+        cpu = CPU(memory=[])
 
         cpu.DE = de
         
@@ -34,7 +34,7 @@ class DE_Test(unittest.TestCase):
         
     @given(integers(min_value=0, max_value=255), integers(min_value=0, max_value=255))
     def test_getter(self, d, e):
-        cpu = CPU()
+        cpu = CPU(memory=[])
         
         cpu.D = d
         cpu.E = e

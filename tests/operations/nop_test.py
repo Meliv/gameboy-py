@@ -7,7 +7,7 @@ import unittest
 
 class NOP_Test(unittest.TestCase):
     def test_nop(self):
-        cpu = CPU()
+        cpu = CPU(memory=[])
 
         cycles = nop(cpu)
 

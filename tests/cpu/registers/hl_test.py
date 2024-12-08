@@ -7,7 +7,7 @@ import unittest
 class HL_Test(unittest.TestCase):
     @given(integers(min_value=256, max_value=65535))
     def test_setter(self, hl):
-        cpu = CPU()
+        cpu = CPU(memory=[])
 
         cpu.HL = hl
         
@@ -34,7 +34,7 @@ class HL_Test(unittest.TestCase):
         
     @given(integers(min_value=0, max_value=255), integers(min_value=0, max_value=255))
     def test_getter(self, h, l):
-        cpu = CPU()
+        cpu = CPU(memory=[])
         
         cpu.H = h
         cpu.L = l
