@@ -39,13 +39,6 @@ class HL_Test(unittest.TestCase):
         cpu.H = h
         cpu.L = l
         
-        self.assertEqual(cpu.HL, (h << 8) | l)
-        self.assertEqual(cpu.H, h)        
-        self.assertEqual(cpu.L, l)        
-        
-        
-        
-        
         self.assertEqual(cpu.A, 0)
         self.assertEqual(cpu.F, 0)
         

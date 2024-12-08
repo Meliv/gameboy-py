@@ -8,8 +8,6 @@ class BC_Test(unittest.TestCase):
     @given(integers(min_value=256, max_value=65535))
     def test_setter(self, bc):
         cpu = CPU()
-        
-        print(bc)
 
         cpu.BC = bc
         
