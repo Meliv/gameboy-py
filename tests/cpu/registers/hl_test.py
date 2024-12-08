@@ -5,7 +5,7 @@ from src.cpu import CPU
 import unittest
 
 class HL_Test(unittest.TestCase):
-    @given(integers(min_value=256, max_value=65535))
+    @given(integers(min_value=0x0100, max_value=0xffff))
     def test_setter(self, hl):
         cpu = CPU(memory=[])
 

@@ -6,7 +6,9 @@ from src.operations import ld_bc_d16
 import unittest
 
 class LD_BC_D16_Test(unittest.TestCase):
-    @given(integers(min_value=0, max_value=255), integers(min_value=0, max_value=255))
+    @given(
+        integers(min_value=0x00, max_value=0xff),
+        integers(min_value=0x00, max_value=0xff))
     def test_ld_bc_d16(self, d8_h, d8_l):
         
         memory = [0x00, d8_l, d8_h]
