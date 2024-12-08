@@ -1,7 +1,7 @@
 from enum import Enum
 import pygame
 from games import Game
-import reader
+import reader as reader
 
 #pygame.init()
 

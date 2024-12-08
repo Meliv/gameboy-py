@@ -1,6 +1,5 @@
 from cpu import CPU
 
-
  # Debug. Fill up memory with NOP instructions
 cpu = CPU()
 

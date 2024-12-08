@@ -1,4 +1,4 @@
-from operations import op_codes
+from src.operations import op_codes
 
 class CPU:
     def __init__(self):
@@ -20,10 +20,25 @@ class CPU:
 
     @property
     def BC(self): return (self.B << 8) | self.C
+    @BC.setter
+    def BC(self, value):
+        self.B = ((255 << 8) & value) >> 8
+        self.C = 255 & value
+    
     @property
     def DE(self): return (self.D << 8) | self.E
+    @DE.setter
+    def DE(self, value):
+        self.D = ((255 << 8) & value) >> 8
+        self.E = 255 & value
+    
     @property
     def HL(self): return (self.H << 8) | self.L
+    @HL.setter
+    def HL(self, value):
+        self.H = ((255 << 8) & value) >> 8
+        self.L = 255 & value
+    
 
     def execute_next_instruction(self):
         o = self.M[self.PC]

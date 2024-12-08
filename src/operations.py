@@ -1,4 +1,3 @@
-
 def nop(cpu):                   # 0x00 NOP
     cpu.PC += 1
     return 4
@@ -9,8 +8,18 @@ def ld_bc_d16(cpu,mem):         # 0x01 LD BC, d16
     cpu.PC += 3
     return 12
 
+def ld_bc_a(cpu,mem):         # 0x02 LD (BC), A
+    mem[cpu.BC] = cpu.A
+    cpu.PC += 1
+    return 8
+
+def inc_bc(cpu):
+    cpu.BC += 1
+    cpu.PC += 1
+    return 8
+
 def stop(cpu):                  # 0x10 stop
-    # TODO
+    # TODO - Not sure I understand what this does atm
     cpu.PC += 2
     return 4
 
@@ -56,6 +65,7 @@ def XOR_A(cpu):                 # 0xaf XOR A
 op_codes = {
     0x00: lambda cpu: nop(cpu),
     0x01: lambda cpu: ld_bc_d16(cpu,cpu.M),
+    0x02: lambda cpu: ld_bc_a(cpu, cpu.M),
     
     0x10: lambda cpu: stop(cpu),
     0x11: lambda cpu: ld_de_d16(cpu,cpu.M),
