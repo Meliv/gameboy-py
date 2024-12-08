@@ -1,5 +1,7 @@
-# Roms
+# Not for sharing
 roms/
+proto/
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
