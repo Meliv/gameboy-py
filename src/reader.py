@@ -1,7 +1,7 @@
 from games import Game
 
 def get_bytes(game: Game, start: int, end: int) -> bytes:
-    with open(f"roms/{game.value}.gb", "rb") as f:
+    with open(f"etc/roms/{game.value}.gb", "rb") as f:
         f.seek(start)
         return f.read(end - start)
 

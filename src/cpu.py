@@ -1,4 +1,4 @@
-from src.operations import op_codes
+import operations
 
 class CPU:
     def __init__(self):
@@ -39,10 +39,9 @@ class CPU:
         self.H = ((255 << 8) & value) >> 8
         self.L = 255 & value
     
-
-    def execute_next_instruction(self):
+    def execute_next_instruction(self) -> int:
         o = self.M[self.PC]
-        cycles = op_codes[o](self)
+        cycles = operations.op_codes[o](self)
         return cycles
     
     def start(self):

@@ -8,12 +8,12 @@ def ld_bc_d16(cpu,mem):         # 0x01 LD BC, d16
     cpu.PC += 3
     return 12
 
-def ld_bc_a(cpu,mem):         # 0x02 LD (BC), A
+def ld_bc_a(cpu,mem):           # 0x02 LD (BC), A
     mem[cpu.BC] = cpu.A
     cpu.PC += 1
     return 8
 
-def inc_bc(cpu):
+def inc_bc(cpu):                # 0x03 INC BC
     cpu.BC += 1
     cpu.PC += 1
     return 8
@@ -66,6 +66,7 @@ op_codes = {
     0x00: lambda cpu: nop(cpu),
     0x01: lambda cpu: ld_bc_d16(cpu,cpu.M),
     0x02: lambda cpu: ld_bc_a(cpu, cpu.M),
+    0x03: lambda cpu: inc_bc(cpu),
     
     0x10: lambda cpu: stop(cpu),
     0x11: lambda cpu: ld_de_d16(cpu,cpu.M),
@@ -76,5 +77,5 @@ op_codes = {
     0x30: lambda cpu: jr_nc_r8(cpu,cpu.M),
     0x31: lambda cpu: ld_sp_d16(cpu,cpu.M),
 
-    0xaf: lambda cpu,_: XOR_A(cpu),
+    0xaf: lambda cpu: XOR_A(cpu),
 }

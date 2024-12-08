@@ -2,7 +2,6 @@ from hypothesis import given
 from hypothesis.strategies import integers
 
 from src.cpu import CPU
-
 import unittest
 
 class DE_Test(unittest.TestCase):
@@ -12,9 +11,24 @@ class DE_Test(unittest.TestCase):
 
         cpu.DE = de
         
-        self.assertEqual(cpu.DE, de)
+        self.assertEqual(cpu.A, 0)
+        self.assertEqual(cpu.F, 0)
+        
+        self.assertEqual(cpu.B, 0)
+        self.assertEqual(cpu.C, 0)
         self.assertEqual(cpu.D, ((255 << 8) & de) >> 8)
         self.assertEqual(cpu.E, 255 & de)
+        self.assertEqual(cpu.H, 0)
+        self.assertEqual(cpu.L, 0)
+        
+        self.assertEqual(cpu.BC, 0)
+        self.assertEqual(cpu.DE, de)
+        self.assertEqual(cpu.HL, 0)
+
+        self.assertEqual(cpu.PC, 0)
+        self.assertEqual(cpu.SP, 0)
+        
+        self.assertTrue(all(i == 0x00 for i in cpu.M))
         
         
         
@@ -25,7 +39,22 @@ class DE_Test(unittest.TestCase):
         cpu.D = d
         cpu.E = e
         
-        self.assertEqual(cpu.DE, (d << 8) | e)
+        self.assertEqual(cpu.A, 0)
+        self.assertEqual(cpu.F, 0)
+        
+        self.assertEqual(cpu.B, 0)        
+        self.assertEqual(cpu.C, 0)
         self.assertEqual(cpu.D, d)        
-        self.assertEqual(cpu.E, e)        
+        self.assertEqual(cpu.E, e)   
+        self.assertEqual(cpu.H, 0)
+        self.assertEqual(cpu.L, 0)
+        
+        self.assertEqual(cpu.BC, 0)
+        self.assertEqual(cpu.DE, (d << 8) | e)
+        self.assertEqual(cpu.HL, 0)
+
+        self.assertEqual(cpu.PC, 0)
+        self.assertEqual(cpu.SP, 0)
+        
+        self.assertTrue(all(i == 0x00 for i in cpu.M))     
         
