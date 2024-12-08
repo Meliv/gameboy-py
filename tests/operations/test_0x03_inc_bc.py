@@ -8,7 +8,8 @@ import unittest
 class INC_BC_Test(unittest.TestCase):
     @given(
         integers(min_value=0x00, max_value=0xff),
-        integers(min_value=0x00, max_value=0xff))
+        integers(min_value=0x00, max_value=0xff)
+    )
     def test_inc_bc(self, b, c):
 
         cpu = CPU(memory=[])

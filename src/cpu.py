@@ -17,8 +17,8 @@ class CPU:
         self._l = 0x0
         
                                     # 16-bit registers
-        self.SP = 0x0               # Stack Pointer
-        self.PC = 0x0               # Program Counter
+        self._sp = 0x0              # Stack Pointer
+        self._pc = 0x0              # Program Counter
 
 
     @property
@@ -81,6 +81,16 @@ class CPU:
     def HL(self, value):
         self._h = ((255 << 8) & value) >> 8
         self._l = 255 & value
+        
+    @property
+    def PC(self): return self._pc
+    @PC.setter
+    def PC(self, value): self._pc = value & 0xffff
+        
+    @property
+    def SP(self): return self._sp
+    @SP.setter
+    def SP(self, value): self._sp = value & 0xffff
     
     def execute_next_instruction(self) -> int:
         o = self.M[self.PC]

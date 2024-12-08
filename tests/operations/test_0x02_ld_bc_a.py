@@ -9,7 +9,8 @@ class LD_BC_A_Test(unittest.TestCase):
     @given(
         integers(min_value=0x00, max_value=0xff),
         integers(min_value=0x00, max_value=0xff),
-        integers(min_value=0x00, max_value=0xff))
+        integers(min_value=0x00, max_value=0xff)
+    )
     def test_ld_bc_a(self, a, b, c):
         
         cpu = CPU()
