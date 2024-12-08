@@ -18,6 +18,13 @@ class CPU:
         self.SP = 0x0           # Stack Pointer
         self.PC = 0x0           # Program Counter
 
+    @property
+    def BC(self): return (self.B << 8) | self.C
+    @property
+    def DE(self): return (self.D << 8) | self.E
+    @property
+    def HL(self): return (self.H << 8) | self.L
+
     def execute_next_instruction(self):
         o = self.M[self.PC]
         cycles = op_codes[o](self)

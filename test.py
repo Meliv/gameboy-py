@@ -1,12 +1,11 @@
-a = 467684374
-print(f"a = {a:032b}")
+a = 0xff - 29
+print(f"a = {a:016b}")
 
-m = 0xfff
-print(f"m = {m:032b}")
+b = 0xff - 109
+print(f"b = {b:016b}")
 
-r = a & m
-print(f"r = {r:032b}")
+c = a << 8
+print(f"c = {c:016b}")
 
-
-#11111111 11111111
-#11111111 11111111 11111111 11111111
+d = b | c
+print(f"m = {d:016b}")
