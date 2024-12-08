@@ -1,5 +1,3 @@
-from hypothesis import given
-from hypothesis.strategies import integers
 from src.cpu import CPU
 
 from src.operations import nop
@@ -22,6 +20,10 @@ class NOP_Test(unittest.TestCase):
         self.assertEqual(cpu.E, 0)
         self.assertEqual(cpu.H, 0)
         self.assertEqual(cpu.L, 0)
+        
+        self.assertEqual(cpu.BC, 0)
+        self.assertEqual(cpu.DE, 0)
+        self.assertEqual(cpu.HL, 0)
         
         self.assertEqual(cpu.PC, 1)
         self.assertEqual(cpu.SP, 0)
