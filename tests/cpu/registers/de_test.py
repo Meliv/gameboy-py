@@ -32,7 +32,9 @@ class DE_Test(unittest.TestCase):
         
         
         
-    @given(integers(min_value=0, max_value=255), integers(min_value=0, max_value=255))
+    @given(
+        integers(min_value=0x00, max_value=0xff),
+        integers(min_value=0x00, max_value=0xff))
     def test_getter(self, d, e):
         cpu = CPU(memory=[])
         
