@@ -15,7 +15,10 @@ class Register_E_Test(unittest.TestCase):
         cpu.E = e
 
         self.assertEqual(cpu.A, 0)
-        self.assertEqual(cpu.F, 0)
+        self.assertEqual(cpu.F_Z, 0)
+        self.assertEqual(cpu.F_N, 0)
+        self.assertEqual(cpu.F_H, 0)
+        self.assertEqual(cpu.F_C, 0)
         
         self.assertEqual(cpu.B, 0)
         self.assertEqual(cpu.C, 0)
@@ -42,7 +45,10 @@ class Register_E_Test(unittest.TestCase):
         cpu.E = e
         
         self.assertEqual(cpu.A, 0)
-        self.assertEqual(cpu.F, 0)
+        self.assertEqual(cpu.F_Z, 0)
+        self.assertEqual(cpu.F_N, 0)
+        self.assertEqual(cpu.F_H, 0)
+        self.assertEqual(cpu.F_C, 0)
         
         self.assertEqual(cpu.B, 0)
         self.assertEqual(cpu.C, 0)

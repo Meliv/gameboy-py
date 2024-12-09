@@ -2,25 +2,22 @@ from hypothesis import given
 from hypothesis.strategies import integers
 from src.cpu import CPU
 
-from src.operations import inc_bc
+from src.operations import ld_de_d16
 import unittest
 
-class INC_BC_Test(unittest.TestCase):
+class LD_DE_D16_Test(unittest.TestCase):
     @given(
         integers(min_value=0x00, max_value=0xff),
         integers(min_value=0x00, max_value=0xff)
     )
-    def test_inc_bc(self, b, c):
+    def test_ld_de_d16(self, d8_1, d8_2):
 
-        cpu = CPU([])
-        cpu.B = b
-        cpu.C = c
+        memory = [0x00, d8_1, d8_2]
+        cpu = CPU(memory)
         
-        r = ((b << 8) | c) + 1 & 0xffff
-        
-        cycles = inc_bc(cpu)
+        cycles = ld_de_d16(cpu, cpu.M)
 
-        self.assertEqual(cycles, 8)
+        self.assertEqual(cycles, 12)
         
         self.assertEqual(cpu.A, 0)
         self.assertEqual(cpu.F_Z, 0)
@@ -28,18 +25,18 @@ class INC_BC_Test(unittest.TestCase):
         self.assertEqual(cpu.F_H, 0)
         self.assertEqual(cpu.F_C, 0)
         
-        self.assertEqual(cpu.B, ((255 << 8) & r) >> 8)
-        self.assertEqual(cpu.C, 255 & r)
-        self.assertEqual(cpu.D, 0)
-        self.assertEqual(cpu.E, 0)
+        self.assertEqual(cpu.B, 0)
+        self.assertEqual(cpu.C, 0)
+        self.assertEqual(cpu.D, d8_2)
+        self.assertEqual(cpu.E, d8_1)
         self.assertEqual(cpu.H, 0)
         self.assertEqual(cpu.L, 0)
         
-        self.assertEqual(cpu.BC, r)
-        self.assertEqual(cpu.DE, 0)
+        self.assertEqual(cpu.BC, 0)
+        self.assertEqual(cpu.DE, (d8_2 << 8) | d8_1)
         self.assertEqual(cpu.HL, 0)
         
-        self.assertEqual(cpu.PC, 1)
+        self.assertEqual(cpu.PC, 3)
         self.assertEqual(cpu.SP, 0)
         
-        self.assertEqual(cpu.M, [])        
+        self.assertEqual(cpu.M, memory)        

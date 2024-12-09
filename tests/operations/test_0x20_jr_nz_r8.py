@@ -2,44 +2,38 @@ from hypothesis import given
 from hypothesis.strategies import integers
 from src.cpu import CPU
 
-from src.operations import inc_bc
+from src.operations import jr_nz_r8
 import unittest
 
-class INC_BC_Test(unittest.TestCase):
-    @given(
-        integers(min_value=0x00, max_value=0xff),
-        integers(min_value=0x00, max_value=0xff)
-    )
-    def test_inc_bc(self, b, c):
+class JR_NZ_R8_Test(unittest.TestCase):
+    def test_jr_nz_r8_Z(self):
 
-        cpu = CPU([])
-        cpu.B = b
-        cpu.C = c
+        cpu = CPU()
         
-        r = ((b << 8) | c) + 1 & 0xffff
+        cpu.F_Z = 1
         
-        cycles = inc_bc(cpu)
+        cycles = jr_nz_r8(cpu, cpu.M)
 
         self.assertEqual(cycles, 8)
         
         self.assertEqual(cpu.A, 0)
-        self.assertEqual(cpu.F_Z, 0)
+        self.assertEqual(cpu.F_Z, 1)
         self.assertEqual(cpu.F_N, 0)
         self.assertEqual(cpu.F_H, 0)
         self.assertEqual(cpu.F_C, 0)
         
-        self.assertEqual(cpu.B, ((255 << 8) & r) >> 8)
-        self.assertEqual(cpu.C, 255 & r)
+        self.assertEqual(cpu.B, 0)
+        self.assertEqual(cpu.C, 0)
         self.assertEqual(cpu.D, 0)
         self.assertEqual(cpu.E, 0)
         self.assertEqual(cpu.H, 0)
         self.assertEqual(cpu.L, 0)
         
-        self.assertEqual(cpu.BC, r)
+        self.assertEqual(cpu.BC, 0)
         self.assertEqual(cpu.DE, 0)
         self.assertEqual(cpu.HL, 0)
         
         self.assertEqual(cpu.PC, 1)
         self.assertEqual(cpu.SP, 0)
         
-        self.assertEqual(cpu.M, [])        
+        self.assertTrue(cpu.M, not all([]))

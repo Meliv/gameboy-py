@@ -1,14 +1,14 @@
 from src.cpu import CPU
 
-from src.operations import nop
+from src.operations import stop
 import unittest
 
-class NOP_Test(unittest.TestCase):
-    def test_nop(self):
-        
-        cpu = CPU([])
+class STOP_Test(unittest.TestCase):
+    def test_stop(self):
 
-        cycles = nop(cpu)
+        cpu = CPU([])
+        
+        cycles = stop(cpu)
 
         self.assertEqual(cycles, 4)
         
@@ -29,8 +29,7 @@ class NOP_Test(unittest.TestCase):
         self.assertEqual(cpu.DE, 0)
         self.assertEqual(cpu.HL, 0)
         
-        self.assertEqual(cpu.PC, 1)
+        self.assertEqual(cpu.PC, 2)
         self.assertEqual(cpu.SP, 0)
         
-        self.assertEqual(cpu.M, [])
-        
+        self.assertEqual(cpu.M, [])        

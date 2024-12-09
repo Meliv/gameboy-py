@@ -23,7 +23,10 @@ class LD_BC_A_Test(unittest.TestCase):
         self.assertEqual(cycles, 8)
         
         self.assertEqual(cpu.A, a)
-        self.assertEqual(cpu.F, 0)
+        self.assertEqual(cpu.F_Z, 0)
+        self.assertEqual(cpu.F_N, 0)
+        self.assertEqual(cpu.F_H, 0)
+        self.assertEqual(cpu.F_C, 0)
         
         self.assertEqual(cpu.B, b)
         self.assertEqual(cpu.C, c)

@@ -30,7 +30,7 @@ def ld_de_d16(cpu,mem):         # 0x11 LD DE, d16
     return 12
 
 def jr_nz_r8(cpu,mem):          # 0x20 JR NZ, r8
-    if cpu.F & (1 << 7):
+    if cpu.F_Z:
         cpu.PC += 1
         return 8
 

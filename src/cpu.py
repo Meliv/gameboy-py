@@ -45,12 +45,7 @@ class CPU:
     def E(self): return self._e
     @E.setter
     def E(self, value): self._e = value & 0xff
-    
-    @property
-    def F(self): return self._f
-    @F.setter
-    def F(self, value): self._f = value & 0xff
-    
+        
     @property
     def H(self): return self._h
     @H.setter
@@ -91,6 +86,26 @@ class CPU:
     def SP(self): return self._sp
     @SP.setter
     def SP(self, value): self._sp = value & 0xffff
+    
+    @property
+    def F_Z(self): return ((1 << 7) & self._f) >> 7
+    @F_Z.setter
+    def F_Z(self, value): self._f = (1 & value) << 7 | self._f
+    
+    @property
+    def F_N(self): return ((1 << 6) & self._f) >> 6
+    @F_N.setter
+    def F_N(self, value): self._f = (1 & value) << 6 | self._f
+    
+    @property
+    def F_H(self): return ((1 << 5) & self._f) >> 5
+    @F_H.setter
+    def F_H(self, value): self._f = (1 & value) << 5 | self._f
+    
+    @property
+    def F_C(self): return ((1 << 4) & self._f) >> 4
+    @F_C.setter
+    def F_C(self, value): self._f = (1 & value) << 4 | self._f
     
     def execute_next_instruction(self) -> int:
         o = self.M[self.PC]
