@@ -52,14 +52,14 @@ def jr_nc_r8(cpu,mem):          # 0x30 JR NZ, r8
     return 8
 
 def ld_sp_d16(cpu,mem):         # 0x31 LD SP,d16
-    cpu.SP = (mem[cpu.PC+2] << 8) + mem[cpu.PC+1]
+    cpu.SP = (mem[cpu.PC+2] << 8) | mem[cpu.PC+1]
     cpu.PC += 3
     return 12
 
-def XOR_A(cpu):                 # 0xaf XOR A
+def xor_a(cpu):                 # 0xaf XOR A
     cpu.A ^= cpu.A
-    if cpu.A: cpu.F |= 1 << 7
-    else: cpu.F &= ~(1 << 7) & 127
+    if cpu.A: cpu.FZ = 0
+    else: cpu.F_Z = 1
     return 4
 
 op_codes = {
@@ -77,5 +77,5 @@ op_codes = {
     0x30: lambda cpu: jr_nc_r8(cpu,cpu.M),
     0x31: lambda cpu: ld_sp_d16(cpu,cpu.M),
 
-    0xaf: lambda cpu: XOR_A(cpu),
+    0xaf: lambda cpu: xor_a(cpu),
 }
