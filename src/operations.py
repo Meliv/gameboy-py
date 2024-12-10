@@ -44,12 +44,12 @@ def ld_hl_d16(cpu,mem):         # 0x21 LD HL, d16
     return 12
 
 def jr_nc_r8(cpu,mem):          # 0x30 JR NZ, r8
-    if cpu.F & (1 << 4):
-        cpu.PC += 1
-        return 8
-
-    cpu.PC += mem[cpu.PC+1]
-    return 12
+    if not cpu.F_C:
+        cpu.PC += mem[cpu.PC+1]
+        return 12
+    
+    cpu.PC += 1
+    return 8
 
 def ld_sp_d16(cpu,mem):         # 0x31 LD SP,d16
     cpu.SP = (mem[cpu.PC+2] << 8) + mem[cpu.PC+1]

@@ -13,6 +13,8 @@ class LD_BC_A_Test(unittest.TestCase):
     )
     def test_ld_bc_a(self, a, b, c):
         
+        bc = (b << 8) | c
+        
         cpu = CPU()
         cpu.A = a
         cpu.B = b
@@ -35,11 +37,12 @@ class LD_BC_A_Test(unittest.TestCase):
         self.assertEqual(cpu.H, 0)
         self.assertEqual(cpu.L, 0)
         
-        self.assertEqual(cpu.BC, (b << 8) | c)
+        self.assertEqual(cpu.BC, bc)
         self.assertEqual(cpu.DE, 0)
         self.assertEqual(cpu.HL, 0)
         
         self.assertEqual(cpu.PC, 1)
         self.assertEqual(cpu.SP, 0)
         
-        self.assertFalse(all(cpu.M))        
+        self.assertEqual(cpu.M[bc], cpu.A)
+        self.assertTrue(not all(m for i,m in enumerate(cpu.M) if i != bc))        
