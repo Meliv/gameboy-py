@@ -10,4 +10,4 @@ with open(f"etc/roms/bootrom.bin", "rb") as f:
 
 cpu.start()
 
-print(cpu.B)
+print('Completed')

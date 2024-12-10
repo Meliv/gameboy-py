@@ -61,21 +61,3 @@ def xor_a(cpu):                 # 0xaf XOR A
     if cpu.A: cpu.FZ = 0
     else: cpu.F_Z = 1
     return 4
-
-op_codes = {
-    0x00: lambda cpu: nop(cpu),
-    0x01: lambda cpu: ld_bc_d16(cpu,cpu.M),
-    0x02: lambda cpu: ld_bc_a(cpu, cpu.M),
-    0x03: lambda cpu: inc_bc(cpu),
-    
-    0x10: lambda cpu: stop(cpu),
-    0x11: lambda cpu: ld_de_d16(cpu,cpu.M),
-    
-    0x20: lambda cpu: jr_nz_r8(cpu,cpu.M),
-    0x21: lambda cpu: ld_hl_d16(cpu,cpu.M),
-    
-    0x30: lambda cpu: jr_nc_r8(cpu,cpu.M),
-    0x31: lambda cpu: ld_sp_d16(cpu,cpu.M),
-
-    0xaf: lambda cpu: xor_a(cpu),
-}
