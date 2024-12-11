@@ -37,6 +37,14 @@ def ld_b_d8(cpu,mem):           # 0x06 LD B, d8
     cpu.PC += 2
     return 8
 
+def rlca(cpu):                  # 0x07 RLCA
+    cpu.F_Z = 0
+    cpu.F_N = 0
+    cpu.F_H = 0
+    cpu.F_C = ((cpu.A << 1) & 256) >> 8
+    cpu.A = ((cpu.A << 1) & 255) | cpu.F_C
+    return 4
+
 def stop(cpu):                  # 0x10 stop
     # TODO - Not sure I understand what this does atm
     cpu.PC += 2
