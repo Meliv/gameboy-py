@@ -5,6 +5,8 @@ ops = {
     0x01: lambda cpu: operations.ld_bc_d16(cpu,cpu.M),
     0x02: lambda cpu: operations.ld_bc_a(cpu, cpu.M),
     0x03: lambda cpu: operations.inc_bc(cpu),
+    0x04: lambda cpu: operations.inc_b(cpu),    
+    0x05: lambda cpu: operations.dec_b(cpu),    
     
     0x10: lambda cpu: operations.stop(cpu),
     0x11: lambda cpu: operations.ld_de_d16(cpu,cpu.M),

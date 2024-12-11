@@ -18,6 +18,20 @@ def inc_bc(cpu):                # 0x03 INC BC
     cpu.PC += 1
     return 8
 
+def inc_b(cpu):
+    cpu.F_Z = int(cpu.B + 1 == 0)
+    cpu.F_N = 0
+    cpu.F_H = int((cpu.B & 0x0f) + 1 > 0x0f)
+    cpu.B += 1
+    return 4
+
+def dec_b(cpu):
+    cpu.F_Z = int(cpu.B - 1 == 0)
+    cpu.F_N = 1
+    cpu.F_H = int((cpu.B & 0x0f) - 1 > 0xff)
+    cpu.B -= 1
+    return 4
+
 def stop(cpu):                  # 0x10 stop
     # TODO - Not sure I understand what this does atm
     cpu.PC += 2
