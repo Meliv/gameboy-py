@@ -32,6 +32,11 @@ def dec_b(cpu):                 # 0x05 DEC B
     cpu.B -= 1
     return 4
 
+def ld_b_d8(cpu,mem):           # 0x06 LD B, d8
+    cpu.B = mem[cpu.PC+1]
+    cpu.PC += 2
+    return 8
+
 def stop(cpu):                  # 0x10 stop
     # TODO - Not sure I understand what this does atm
     cpu.PC += 2
