@@ -18,14 +18,14 @@ def inc_bc(cpu):                # 0x03 INC BC
     cpu.PC += 1
     return 8
 
-def inc_b(cpu):
+def inc_b(cpu):                 # 0x04 INC B
     cpu.F_Z = int(cpu.B + 1 == 0)
     cpu.F_N = 0
     cpu.F_H = int((cpu.B & 0x0f) + 1 > 0x0f)
     cpu.B += 1
     return 4
 
-def dec_b(cpu):
+def dec_b(cpu):                 # 0x05 DEC B
     cpu.F_Z = int(cpu.B - 1 == 0)
     cpu.F_N = 1
     cpu.F_H = int((cpu.B & 0x0f) - 1 > 0xff)
