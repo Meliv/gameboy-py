@@ -9,6 +9,7 @@ ops = {
     0x05: lambda cpu: operations.dec_b(cpu),
     0x06: lambda cpu: operations.ld_b_d8(cpu, cpu.M),
     0x07: lambda cpu: operations.rlca(cpu),
+    0x08: lambda cpu: operations.ld_a16_sp(cpu),
     
     0x10: lambda cpu: operations.stop(cpu),
     0x11: lambda cpu: operations.ld_de_d16(cpu,cpu.M),

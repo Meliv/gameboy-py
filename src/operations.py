@@ -45,6 +45,13 @@ def rlca(cpu):                  # 0x07 RLCA
     cpu.A = ((cpu.A << 1) & 255) | cpu.F_C
     return 4
 
+def ld_a16_sp(cpu,mem):         # 0x08 LD a16, SP
+    m_address = (mem[cpu.PC+2] << 8) | mem[cpu.PC+1]
+    mem[m_address] = cpu.SP & 255
+    mem[m_address+1] = (cpu.SP >> 8) & 255
+    cpu.PC += 3
+    return 20
+
 def stop(cpu):                  # 0x10 stop
     # TODO - Not sure I understand what this does atm
     cpu.PC += 2
