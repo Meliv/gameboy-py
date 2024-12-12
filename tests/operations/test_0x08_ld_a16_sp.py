@@ -52,8 +52,9 @@ class LD_A16_SP_Test(unittest.TestCase):
             0x01,
             0x02,
             (mem_h << 8) | mem_l,
-            (mem_h << 8) | mem_l + 1
+            ((mem_h << 8) | mem_l) + 1
         ]
         
-        self.assertFalse(any([m for i,m in enumerate(cpu.M) if i not in populated_m_locations and m != 0x00]))
+        x = [m for i,m in enumerate(cpu.M) if i not in populated_m_locations and m != 0x00]
+        self.assertFalse(any(x))
         
