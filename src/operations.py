@@ -23,6 +23,7 @@ def inc_b(cpu):                 # 0x04 INC B
     cpu.F_N = 0
     cpu.F_H = (cpu.B & 0x0f) + 1 > 0x0f
     cpu.B += 1
+    cpu.PC += 1
     return 4
 
 def dec_b(cpu):                 # 0x05 DEC B
@@ -30,6 +31,7 @@ def dec_b(cpu):                 # 0x05 DEC B
     cpu.F_N = 1
     cpu.F_H = (cpu.B & 0x0f) - 1 > 0xff
     cpu.B -= 1
+    cpu.PC += 1
     return 4
 
 def ld_b_d8(cpu,mem):           # 0x06 LD B, d8
@@ -43,6 +45,7 @@ def rlca(cpu):                  # 0x07 RLCA
     cpu.F_H = 0
     cpu.F_C = ((cpu.A << 1) & 256) >> 8
     cpu.A = ((cpu.A << 1) & 255) | cpu.F_C
+    cpu.PC += 1
     return 4
 
 def ld_a16_sp(cpu,mem):         # 0x08 LD a16, SP
@@ -51,6 +54,12 @@ def ld_a16_sp(cpu,mem):         # 0x08 LD a16, SP
     mem[m_address+1] = (cpu.SP >> 8) & 255
     cpu.PC += 3
     return 20
+
+def add_hl_bc(cpu):
+    
+    cpu.PC += 1
+    
+    return 8
 
 def stop(cpu):                  # 0x10 stop
     # TODO - Not sure I understand what this does atm
@@ -94,4 +103,5 @@ def xor_a(cpu):                 # 0xaf XOR A
     cpu.A ^= cpu.A
     if cpu.A: cpu.FZ = 0
     else: cpu.F_Z = 1
+    cpu.PC += 1
     return 4

@@ -45,7 +45,7 @@ class RLCA_Test(unittest.TestCase):
             self.assertEqual(cpu.DE, 0)
             self.assertEqual(cpu.HL, 0)
             
-            self.assertEqual(cpu.PC, 0)
+            self.assertEqual(cpu.PC, 1)
             self.assertEqual(cpu.SP, 0)
             
             self.assertEqual(cpu.M, [])
