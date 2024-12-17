@@ -1,24 +1,31 @@
-def nop(cpu):                   # 0x00 NOP
+from .cpu import CPU
+
+# 0x00 NOP
+def nop(cpu: CPU):                   
     cpu.PC += 1
     return 4
 
-def ld_bc_d16(cpu,mem):         # 0x01 LD BC, d16
+# 0x01 LD BC, d16
+def ld_bc_d16(cpu: CPU, mem: list[int]):
     cpu.B = mem[cpu.PC+2]
     cpu.C = mem[cpu.PC+1]
     cpu.PC += 3
     return 12
 
-def ld_bc_a(cpu,mem):           # 0x02 LD (BC), A
+# 0x02 LD (BC), A
+def ld_bc_a(cpu: CPU, mem: list[int]):
     mem[cpu.BC] = cpu.A
     cpu.PC += 1
     return 8
 
-def inc_bc(cpu):                # 0x03 INC BC
+# 0x03 INC BC
+def inc_bc(cpu: CPU):
     cpu.BC += 1
     cpu.PC += 1
     return 8
 
-def inc_b(cpu):                 # 0x04 INC B
+# 0x04 INC B
+def inc_b(cpu: CPU):
     cpu.F_Z = cpu.B + 1 == 0
     cpu.F_N = 0
     cpu.F_H = (cpu.B & 0x0f) + 1 > 0x0f
@@ -26,7 +33,8 @@ def inc_b(cpu):                 # 0x04 INC B
     cpu.PC += 1
     return 4
 
-def dec_b(cpu):                 # 0x05 DEC B
+# 0x05 DEC B
+def dec_b(cpu: CPU):
     cpu.F_Z = cpu.B - 1 == 0
     cpu.F_N = 1
     cpu.F_H = (cpu.B & 0x0f) - 1 > 0xff
@@ -34,12 +42,14 @@ def dec_b(cpu):                 # 0x05 DEC B
     cpu.PC += 1
     return 4
 
-def ld_b_d8(cpu,mem):           # 0x06 LD B, d8
+# 0x06 LD B, d8
+def ld_b_d8(cpu: CPU, mem: list[int]):
     cpu.B = mem[cpu.PC+1]
     cpu.PC += 2
     return 8
 
-def rlca(cpu):                  # 0x07 RLCA
+# 0x07 RLCA
+def rlca(cpu: CPU):
     cpu.F_Z = 0
     cpu.F_N = 0
     cpu.F_H = 0
@@ -48,31 +58,37 @@ def rlca(cpu):                  # 0x07 RLCA
     cpu.PC += 1
     return 4
 
-def ld_a16_sp(cpu,mem):         # 0x08 LD a16, SP
+# 0x08 LD a16, SP
+def ld_a16_sp(cpu: CPU, mem: list[int]):
     m_address = (mem[cpu.PC+2] << 8) | mem[cpu.PC+1]
     mem[m_address] = cpu.SP & 255
     mem[m_address+1] = (cpu.SP >> 8) & 255
     cpu.PC += 3
     return 20
 
-def add_hl_bc(cpu):
-    
+# 0x09 ADD HL, BC
+def add_hl_bc(cpu: CPU):
+
+
+
     cpu.PC += 1
-    
     return 8
 
-def stop(cpu):                  # 0x10 stop
+# 0x10 STOP
+def stop(cpu: CPU):
     # TODO - Not sure I understand what this does atm
     cpu.PC += 2
     return 4
 
-def ld_de_d16(cpu,mem):         # 0x11 LD DE, d16
+# 0x11 LD DE, d16
+def ld_de_d16(cpu: CPU, mem: list[int]):
     cpu.D = mem[cpu.PC+2]
     cpu.E = mem[cpu.PC+1]
     cpu.PC += 3
     return 12
 
-def jr_nz_r8(cpu,mem):          # 0x20 JR NZ, r8
+# 0x20 JR NZ, r8
+def jr_nz_r8(cpu: CPU, mem: list[int]):
     if cpu.F_Z:
         cpu.PC += 1
         return 8
@@ -80,13 +96,15 @@ def jr_nz_r8(cpu,mem):          # 0x20 JR NZ, r8
     cpu.PC += mem[cpu.PC+1]
     return 12
 
-def ld_hl_d16(cpu,mem):         # 0x21 LD HL, d16
+# 0x21 LD HL, d16
+def ld_hl_d16(cpu: CPU, mem: list[int]):
     cpu.H = mem[cpu.PC+2]
     cpu.L = mem[cpu.PC+1]
     cpu.PC += 3
     return 12
 
-def jr_nc_r8(cpu,mem):          # 0x30 JR NZ, r8
+# 0x30 JR NZ, r8
+def jr_nc_r8(cpu: CPU, mem: list[int]):
     if not cpu.F_C:
         cpu.PC += mem[cpu.PC+1]
         return 12
@@ -94,12 +112,14 @@ def jr_nc_r8(cpu,mem):          # 0x30 JR NZ, r8
     cpu.PC += 1
     return 8
 
-def ld_sp_d16(cpu,mem):         # 0x31 LD SP,d16
+# 0x31 LD SP,d16
+def ld_sp_d16(cpu: CPU, mem: list[int]):
     cpu.SP = (mem[cpu.PC+2] << 8) | mem[cpu.PC+1]
     cpu.PC += 3
     return 12
 
-def xor_a(cpu):                 # 0xaf XOR A
+# 0xaf XOR A
+def xor_a(cpu: CPU):
     cpu.A ^= cpu.A
     if cpu.A: cpu.FZ = 0
     else: cpu.F_Z = 1
