@@ -24,8 +24,8 @@ class ADD_HL_BC_Test(unittest.TestCase):
         self.assertEqual(cpu.A, 0)
         self.assertEqual(cpu.F_Z, 0)
         self.assertEqual(cpu.F_N, 0)
-        self.assertEqual(cpu.F_H, 0)
-        self.assertEqual(cpu.F_C, 0)
+        self.assertEqual(cpu.F_H, (hl + bc) & 0x0fff > 0x0fff)
+        self.assertEqual(cpu.F_C, (hl + bc) & 0xffff > 0xffff)
         
         self.assertEqual(cpu.B, bc >> 8)
         self.assertEqual(cpu.C, bc & 255)
