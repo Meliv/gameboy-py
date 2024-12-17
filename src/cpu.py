@@ -4,7 +4,7 @@ class CPU:
     def __init__(self, memory=None):
         
         # Memory
-        self.M = memory if memory is not None else [0x0] * (0xffff + 1)
+        self.M = memory if memory is not None else [0x0] * 0x10001
         
         self._a = 0x0               # Accumulator
         self._f = 0x0               # Flags
