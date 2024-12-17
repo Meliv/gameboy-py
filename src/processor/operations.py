@@ -68,9 +68,7 @@ def ld_a16_sp(cpu: CPU, mem: list[int]):
 
 # 0x09 ADD HL, BC
 def add_hl_bc(cpu: CPU):
-
-
-
+    cpu.HL += cpu.BC
     cpu.PC += 1
     return 8
 
