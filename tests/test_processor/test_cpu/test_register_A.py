@@ -1,9 +1,9 @@
 from hypothesis import given
 from hypothesis.strategies import integers
 
-from processor.cpu import CPU
-
 import unittest
+
+from processor.cpu import CPU
 
 class Register_A_Test(unittest.TestCase):
     @given(
