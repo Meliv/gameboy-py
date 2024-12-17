@@ -81,6 +81,12 @@ def ld_a_abc(cpu: CPU, mem: list[int]):
     cpu.PC += 1
     return 8
 
+# 0x0B DEC BC
+def dec_bc(cpu: CPU):
+    cpu.BC -= 1
+    cpu.PC += 1
+    return 8
+
 # 0x10 STOP
 def stop(cpu: CPU):
     # TODO - Not sure I understand what this does atm
