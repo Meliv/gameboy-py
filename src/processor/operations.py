@@ -75,6 +75,12 @@ def add_hl_bc(cpu: CPU):
     cpu.PC += 1
     return 8
 
+# 0x0A LD A, (BC)
+def ld_a_abc(cpu: CPU, mem: list[int]):
+    cpu.A = mem[cpu.BC]
+    cpu.PC += 1
+    return 8
+
 # 0x10 STOP
 def stop(cpu: CPU):
     # TODO - Not sure I understand what this does atm
