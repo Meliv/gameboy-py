@@ -1,8 +1,9 @@
 from hypothesis import given
 from hypothesis.strategies import integers
-from src.cpu import CPU
 
-from src.operations import inc_b
+from processor.cpu import CPU
+from processor.operations import inc_b
+
 import unittest
 
 class INC_B_Test(unittest.TestCase):

@@ -1,8 +1,9 @@
 from hypothesis import given
 from hypothesis.strategies import integers
-from src.cpu import CPU
 
-from src.operations import ld_de_d16
+from processor.cpu import CPU
+from processor.operations import ld_de_d16
+
 import unittest
 
 class LD_DE_D16_Test(unittest.TestCase):

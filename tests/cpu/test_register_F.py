@@ -1,6 +1,7 @@
 from hypothesis import given
 from hypothesis.strategies import booleans
-from src.cpu import CPU
+
+from processor.cpu import CPU
 
 import unittest
 

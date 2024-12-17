@@ -1,8 +1,8 @@
 from hypothesis import given
 from hypothesis.strategies import integers
-from src.cpu import CPU
 
-from src.operations import nop
+from processor.cpu import CPU
+
 import unittest
 
 class Register_H_Test(unittest.TestCase):

@@ -1,6 +1,6 @@
-from src.cpu import CPU
+from processor.cpu import CPU
+from processor.operations import stop
 
-from src.operations import stop
 import unittest
 
 class STOP_Test(unittest.TestCase):

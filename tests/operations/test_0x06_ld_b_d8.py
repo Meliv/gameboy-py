@@ -1,8 +1,9 @@
 from hypothesis import given
 from hypothesis.strategies import integers
-from src.cpu import CPU
 
-from src.operations import ld_b_d8
+from processor.cpu import CPU
+from processor.operations import ld_b_d8
+
 import unittest
 
 class LD_B_D8_Test(unittest.TestCase):

@@ -1,6 +1,6 @@
-from src.cpu import CPU
+from processor.cpu import CPU
+from processor.operations import nop
 
-from src.operations import nop
 import unittest
 
 class NOP_Test(unittest.TestCase):

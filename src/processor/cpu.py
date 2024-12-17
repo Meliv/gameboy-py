@@ -1,4 +1,4 @@
-from operation_codes import ops
+from processor import op_codes
 
 class CPU:
     def __init__(self, memory=None):
@@ -109,7 +109,7 @@ class CPU:
     
     def execute_next_instruction(self) -> int:
         o = self.M[self.PC]
-        cycles = ops[o](self)
+        cycles = op_codes.process(o, self)
         return cycles
     
     def start(self):

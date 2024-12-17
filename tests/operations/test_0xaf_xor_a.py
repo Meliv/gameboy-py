@@ -1,8 +1,9 @@
 from hypothesis import given
 from hypothesis.strategies import integers
-from src.cpu import CPU
 
-from src.operations import xor_a
+from processor.cpu import CPU
+from processor.operations import xor_a
+
 import unittest
 
 class XOR_A_Test(unittest.TestCase):

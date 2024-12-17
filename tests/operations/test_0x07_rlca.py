@@ -1,6 +1,6 @@
-from src.cpu import CPU
+from processor.cpu import CPU
+from processor.operations import rlca
 
-from src.operations import rlca
 import unittest
 
 class RLCA_Test(unittest.TestCase):

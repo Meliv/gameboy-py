@@ -1,8 +1,9 @@
 from hypothesis import given
 from hypothesis.strategies import integers
-from src.cpu import CPU
 
-from src.operations import jr_nz_r8
+from processor.cpu import CPU
+from processor.operations import jr_nz_r8
+
 import unittest
 
 class JR_NZ_R8_Test(unittest.TestCase):

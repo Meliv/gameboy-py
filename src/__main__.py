@@ -1,4 +1,4 @@
-from cpu import CPU
+from processor.cpu import CPU
 
  # Debug. Fill up memory with NOP instructions
 cpu = CPU()
