@@ -14,6 +14,8 @@ def process(c, cpu):
         0x09: lambda cpu: operations.add_hl_bc(cpu),
         0x0a: lambda cpu: operations.ld_a_abc(cpu, cpu.M),
         0x0b: lambda cpu: operations.dec_bc(cpu),
+        0x0c: lambda cpu: operations.inc_c(cpu),
+        0x0d: lambda cpu: operations.dec_c(cpu),
         
         0x10: lambda cpu: operations.stop(cpu),
         0x11: lambda cpu: operations.ld_de_d16(cpu,cpu.M),

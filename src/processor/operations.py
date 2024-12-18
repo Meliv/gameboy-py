@@ -26,7 +26,7 @@ def inc_bc(cpu: CPU):
 
 # 0x04 INC B
 def inc_b(cpu: CPU):
-    cpu.F_Z = cpu.B + 1 == 0
+    cpu.F_Z = cpu.B+1 & 0xff == 0
     cpu.F_N = 0
     cpu.F_H = (cpu.B & 0x0f) + 1 > 0x0f
     cpu.B += 1
@@ -35,7 +35,7 @@ def inc_b(cpu: CPU):
 
 # 0x05 DEC B
 def dec_b(cpu: CPU):
-    cpu.F_Z = cpu.B - 1 == 0
+    cpu.F_Z = cpu.B-1 & 0xff == 0
     cpu.F_N = 1
     cpu.F_H = (cpu.B & 0x0f) - 1 > 0xff
     cpu.B -= 1
@@ -89,12 +89,19 @@ def dec_bc(cpu: CPU):
 
 # 0x0C INC C
 def inc_c(cpu: CPU):
-    
     cpu.F_Z = cpu.C+1 & 0xff == 0
     cpu.F_N = 0
     cpu.F_H = (cpu.C & 0x0f) + 1 > 0x0f
-    
     cpu.C += 1
+    cpu.PC += 1
+    return 4
+
+# 0x0D DEC C
+def dec_c(cpu: CPU):
+    cpu.F_Z = cpu.C-1 & 0xff == 0
+    cpu.F_N = 1
+    cpu.F_H = (cpu.C & 0x0f) - 1 > 0xff
+    cpu.C -= 1
     cpu.PC += 1
     return 4
 

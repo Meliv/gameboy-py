@@ -20,9 +20,9 @@ class DEC_B_Test(unittest.TestCase):
         self.assertEqual(cycles, 4)
         
         self.assertEqual(cpu.A, 0)
-        self.assertEqual(cpu.F_Z, int(b - 1 == 0))
+        self.assertEqual(cpu.F_Z, b-1 & 0xff == 0)
         self.assertEqual(cpu.F_N, 1)
-        self.assertEqual(cpu.F_H, int((b & 0x0f) - 1 > 0xff))
+        self.assertEqual(cpu.F_H, (b & 0x0f) - 1 > 0xff)
         self.assertEqual(cpu.F_C, 0)
         
         self.assertEqual(cpu.B, b-1 & 0xff)
